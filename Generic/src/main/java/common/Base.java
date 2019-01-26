@@ -15,6 +15,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
 import java.io.File;
@@ -23,10 +24,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
-/**
- * Created by mrahman on 9/5/15.
- */
 public class Base {
 
     public static AppiumDriver ad = null;
@@ -38,15 +35,14 @@ public class Base {
     public File appDirectory = null;
     public File findApp = null;
     public DesiredCapabilities cap = null;
-
     @Parameters({"OS","appType","deviceType", "deviceName","version"})
     @BeforeMethod
-    public void setUp(String OS,String appType,String deviceType,String deviceName,
-                      String version)throws IOException,InterruptedException{
+    public void setUp(@Optional("Android") String OS,@Optional("Phone") String appType,@Optional("RealDevice") String deviceType,@Optional("Galaxy Edge s7") String deviceName,
+                      @Optional("8.0")String version)throws IOException,InterruptedException{
 
         if(OS.equalsIgnoreCase("ios")){
             if(appType.contains("iPhone")){
-                appDirectory = new File("/Users/mrahman/develop/MobileAutomationJuly2018/UICatalog/src/app/UICatalog6.1.app.zip");
+                appDirectory = new File("C:\\Users\\ahmed\\Desktop\\MobileNov2018\\UiCatalog\\src\\app\\UICatalog6.1.app.zip");
                 findApp = new File(appDirectory,"UICatalog6.1.app.zip");
                 if(deviceType.equalsIgnoreCase("RealDevice")){
                     cap = new DesiredCapabilities();
@@ -98,8 +94,8 @@ public class Base {
 
         }else if(OS.contains("Android")){
             if(appType.contains("Phone")){
-                appDirectory = new File("Android/src/app");
-                findApp = new File(appDirectory,"snapchat.apk");
+                appDirectory = new File("NYP/src/app");
+               findApp = new File(appDirectory,"nyp.apk");
                 if(deviceType.equalsIgnoreCase("RealDevice")){
                     cap = new DesiredCapabilities();
                     cap.setCapability(MobileCapabilityType.DEVICE_NAME,deviceName);
@@ -144,10 +140,6 @@ public class Base {
             }
 
         }
-
-
-
-
     }
 
     @AfterMethod

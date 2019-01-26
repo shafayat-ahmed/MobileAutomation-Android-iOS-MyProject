@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="iOS test suite on iPhone Simulator">
+
+    <parameter name="OS" value="Android"/>
+    <parameter name="appType" value="Phone"/>
+    <parameter name="deviceType" value="RealDevice"/>
+    <parameter name="deviceName" value="Galaxy S7"/>
+    <parameter name="version" value="8.0.0"/>
+
+    <test name="Go to Home page" preserve-order="true">
+        <classes>
+            <class name="Android.MenuPageTest"/>
+        </classes>
+    </test>
+</suite>
