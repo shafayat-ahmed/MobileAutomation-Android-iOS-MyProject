@@ -12,6 +12,7 @@
         <module>Generic</module>
         <module>UiCatalog</module>
         <module>NYP</module>
+        <module>NYT Rest</module>
     </modules>
 
     <dependencyManagement>
@@ -31,6 +32,11 @@
                 <groupId>org.apache.poi</groupId>
                 <artifactId>poi</artifactId>
                 <version>3.13-beta1</version>
+            </dependency>
+            <dependency>
+                <groupId>io.rest-assured</groupId>
+                <artifactId>rest-assured</artifactId>
+                <version>3.3.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

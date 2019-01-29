@@ -1,5 +1,4 @@
 package common;
-
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
@@ -17,7 +16,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -25,7 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 public class Base {
-
     public static AppiumDriver ad = null;
     public String OS = null;
     public String deviceName = null;
@@ -39,7 +36,6 @@ public class Base {
     @BeforeMethod
     public void setUp(@Optional("Android") String OS,@Optional("Phone") String appType,@Optional("RealDevice") String deviceType,@Optional("Galaxy Edge s7") String deviceName,
                       @Optional("8.0")String version)throws IOException,InterruptedException{
-
         if(OS.equalsIgnoreCase("ios")){
             if(appType.contains("iPhone")){
                 appDirectory = new File("C:\\Users\\ahmed\\Desktop\\MobileNov2018\\UiCatalog\\src\\app\\UICatalog6.1.app.zip");
@@ -53,7 +49,6 @@ public class Base {
                     cap.setCapability(MobileCapabilityType.APP, findApp.getAbsolutePath());
                     ad = new IOSDriver(new URL("http://127.0.0.1:4723/wd/hub"), cap);
                     ad.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
                 }else if (deviceType.equalsIgnoreCase("Simulator")){
                     cap = new DesiredCapabilities();
                     cap.setCapability(MobileCapabilityType.DEVICE_NAME,deviceName);
@@ -64,8 +59,6 @@ public class Base {
                     ad = new IOSDriver(new URL("http://127.0.0.1:4723/wd/hub"), cap);
                     ad.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 }
-
-
             }else if(appType.equalsIgnoreCase("iPad 2")){
                 appDirectory = new File("IOS/src/app");
                 findApp = new File(appDirectory,"UICatalog6.1.app.zip");
@@ -88,10 +81,8 @@ public class Base {
                     cap.setCapability(MobileCapabilityType.APP, findApp.getAbsolutePath());
                     ad = new IOSDriver(new URL("http://127.0.0.1:4723/wd/hub"), cap);
                     ad.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
                 }
             }
-
         }else if(OS.contains("Android")){
             if(appType.contains("Phone")){
                 appDirectory = new File("NYP/src/app");
@@ -104,9 +95,7 @@ public class Base {
                     cap.setCapability(MobileCapabilityType.APP, findApp.getAbsolutePath());
                     ad = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), cap);
                     ad.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
                 }else if (deviceType.equalsIgnoreCase("Emulator")){
-
                     cap = new DesiredCapabilities();
                     cap.setCapability(MobileCapabilityType.DEVICE_NAME,deviceName);
                     cap.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.ANDROID);
@@ -115,7 +104,6 @@ public class Base {
                     ad = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), cap);
                     ad.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 }
-
             }else if(OS.equalsIgnoreCase("Tablets")){
                 if(deviceType.equalsIgnoreCase("RealDevice")){
                     cap = new DesiredCapabilities();
@@ -125,9 +113,7 @@ public class Base {
                     cap.setCapability(MobileCapabilityType.APP, findApp.getAbsolutePath());
                     ad = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), cap);
                     ad.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
                 }else if (deviceType.equalsIgnoreCase("Emulator")){
-
                     cap = new DesiredCapabilities();
                     cap.setCapability(MobileCapabilityType.DEVICE_NAME,deviceName);
                     cap.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.ANDROID);
@@ -136,12 +122,9 @@ public class Base {
                     ad = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), cap);
                     ad.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 }
-
             }
-
         }
     }
-
     @AfterMethod
     public void cleanUpApp(){
         ad.quit();
@@ -156,7 +139,6 @@ public class Base {
     public void sleep(int sec)throws InterruptedException{
         Thread.sleep(1000 * sec);
     }
-
     public void typeByXpath(String locator, String value, Keys key){
         ad.findElement(By.xpath(locator)).sendKeys(value);
     }
@@ -168,7 +150,6 @@ public class Base {
         for(WebElement element:elements){
             text.add(element.getText());
         }
-
         return text;
     }
     public static void scrollKeys(AppiumDriver driver, String[] list, String parent) {
